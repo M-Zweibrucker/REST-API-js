@@ -1,11 +1,17 @@
 import 'dotenv/config'
-import Joi from 'joi'
+import { z } from 'zod'
 
-const envSchema = Joi.object({
-  NODE_ENV: Joi.valid('development', 'production', 'test')
-    .default('production')
-    .required(),
-  DATABASE_URL: Joi.string().required(),
+const envSchema = z.object({
+  NODE_ENV: z.enum(['development', 'production', 'test']).default('production'),
+  DATABASE_URL: z.string(),
+  PORT: z.number().default(3333),
 })
+const _env = envSchema.safeParse(process.env)
 
-export const env = envSchema.parse(process.env)
+if (_env.success === false) {
+  console.error('⚠️ Invalid environment variables', _env.error.format())
+
+  throw new Error('Invalid environment variables.')
+}
+
+export const env = _env.data

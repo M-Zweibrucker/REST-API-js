@@ -1,4 +1,4 @@
-import { env } from './env'
+import { env } from './env/index.js'
 
 import pkg from 'knex'
 const { knex: setupKnex } = pkg
