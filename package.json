@@ -13,10 +13,13 @@
   "main": "index.js",
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.1.0",
-    "eslint": "^8.48.0"
+    "eslint": "^8.48.0",
+    "supertest": "^6.3.3",
+    "vitest": "^0.34.3"
   },
   "scripts": {
-    "dev": "node --trace-warnings --watch src/server.js"
+    "dev": "node --trace-warnings --watch src/server.js",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
